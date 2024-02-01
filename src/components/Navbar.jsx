@@ -1,46 +1,34 @@
 import React from "react";
+import ThemeButton from "./ThemeButton";
+import { useState, useEffect } from "react";
 
 const Navbar = () => {
+  const [isdark, setIsdark] = useState(
+    JSON.parse(localStorage.getItem("isdark"))
+  );
+  useEffect(() => {
+    localStorage.setItem("isdark", JSON.stringify(isdark));
+  }, [isdark]);
   return (
     <div>
-      <div className="navbar bg-secondary text-base-100 px-8">
+      <div className="navbar bg-base-200 px-10">
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">VocApp</a>
+          <a className="btn btn-ghost text-2xl font-bold">VocApp</a>
         </div>
-        <label className="flex cursor-pointer gap-2">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="5" />
-            <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-          </svg>
-          <input
-            type="checkbox"
-            value="synthwave"
-            className="toggle theme-controller"
-          />
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-          </svg>
-        </label>
+
+        {/* Colors */}
+        <button className="btn btn-primary">primary</button>
+        <button className="btn btn-secondary">secondary</button>
+        <button className="btn btn-accent">accent</button>
+        <button className="btn btn-neutral">neutral</button>
+        <button className="btn btn-base-100">base-100</button>
+        <button className="btn btn-info">info</button>
+        <button className="btn btn-success">success</button>
+        <button className="btn btn-warning">warning</button>
+        <button className="btn btn-error">error</button>
+        {/* Colors */}
+
+        <ThemeButton isdark={isdark} setIsdark={setIsdark} />
         <div className="flex-none">
           <button className="btn btn-square btn-ghost">
             <svg
