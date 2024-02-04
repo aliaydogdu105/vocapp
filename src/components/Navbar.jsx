@@ -1,6 +1,7 @@
 import React from "react";
 import ThemeButton from "./ThemeButton";
 import { useState, useEffect } from "react";
+import PronunciationPage from "./PronunciationPage";
 
 const Navbar = () => {
   const [isdark, setIsdark] = useState(
@@ -15,7 +16,7 @@ const Navbar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-base-200 px-8">
+          <div className="w-full navbar bg-base-200 sm:px-8">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -65,7 +66,7 @@ const Navbar = () => {
             <ThemeButton isdark={isdark} setIsdark={setIsdark} />
           </div>
           {/* Page content here */}
-          Content
+          <PronunciationPage />
         </div>
         <div className="drawer-side">
           <label
