@@ -80,59 +80,94 @@ const PronunciationPage = () => {
     }
   };
 
+  useEffect(() => {
+    selectRandomPair();
+  }, []);
+
+  const selectRandomPair = () => {
+    const randomIndex = Math.floor(Math.random() * wordPairs.length);
+    const selectedPair = wordPairs[randomIndex];
+    setSelectedPair(selectedPair);
+    setAnswer(null);
+    fetchAudioUrl(selectedPair[0], setAudioUrl1);
+    fetchAudioUrl(selectedPair[1], setAudioUrl2);
+  };
+
   return (
-    <div className="mockup-window border border-gray-400 m-6 md:mx-44">
-      <div className="flex justify-center items-center flex-col gap-4 px-4 py-12 border-t border-gray-400">
-        <h2 className="text-4xl font-extrabold">Pronunciation</h2>
-        <p>Listen to two words and choose the correct answer:</p>
-        {audioUrl1 && audioUrl2 && (
-          <div className=" flex flex-col gap-4">
+    <div className="h-screen flex justify-center items-center">
+      <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 2xl:w-1/2">
+        <div className="flex justify-center items-center flex-col gap-4 px-4 py-8 border-t border-gray-400">
+          <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
+          <p>Listen to two words and choose the correct answer:</p>
+          {audioUrl1 && audioUrl2 && (
             <div className=" flex flex-col gap-4">
-              <audio controls>
-                <source src={audioUrl1} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-              <audio controls>
-                <source src={audioUrl2} type="audio/mpeg" />
-                Your browser does not support the audio element.
-              </audio>
-            </div>
-            <div>
-              <div className="flex w-full">
-                <button
-                  onClick={() => handleAnswer("Same")}
-                  className={classNames(
-                    "grid h-20 flex-grow card bg-base-200 rounded-box place-items-center",
-                    {
-                      "bg-green-500": answer === "Correct1",
-                      "bg-red-500": answer === "Wrong1",
-                    }
-                  )}
+              <div className=" flex justify-around gap-10">
+                <div
+                  className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
+                  onClick={() => {
+                    const audio = new Audio(audioUrl1);
+                    audio.play();
+                  }}
                 >
-                  Same
-                </button>
-                <div className="divider divider-horizontal">or</div>
-                <button
-                  onClick={() => handleAnswer("Different")}
-                  className={classNames(
-                    "grid h-20 flex-grow card bg-base-200 rounded-box place-items-center",
-                    {
-                      "bg-green-500": answer === "Correct2",
-                      "bg-red-500": answer === "Wrong2",
-                    }
-                  )}
+                  <span role="button" aria-label="Speaker">
+                    🔊
+                  </span>
+                </div>
+                <div
+                  className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
+                  onClick={() => {
+                    const audio = new Audio(audioUrl2);
+                    audio.play();
+                  }}
                 >
-                  Different
-                </button>
+                  <span role="button" aria-label="Speaker">
+                    🔊
+                  </span>
+                </div>
+              </div>
+              <div className="flex justify-center items-center">
+                <div className="flex justify-center items-center w-11/12 sm:w-full">
+                  <button
+                    onClick={() => handleAnswer("Same")}
+                    className={classNames(
+                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center",
+                      {
+                        "bg-green-500": answer === "Correct1",
+                        "bg-red-500": answer === "Wrong1",
+                      }
+                    )}
+                  >
+                    Same
+                  </button>
+                  <div className="divider divider-horizontal">or</div>
+                  <button
+                    onClick={() => handleAnswer("Different")}
+                    className={classNames(
+                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center",
+                      {
+                        "bg-green-500": answer === "Correct2",
+                        "bg-red-500": answer === "Wrong2",
+                      }
+                    )}
+                  >
+                    Different
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        )}
-        {answer && (
-          <p>
-            <b>Words:</b> {selectedPair[0]} - {selectedPair[1]}
-          </p>
-        )}
+          )}
+          {answer && (
+            <p className="skeleton bg-success p-3 text-base-100">
+              <b>Words:</b> {selectedPair[0]} - {selectedPair[1]}
+            </p>
+          )}
+        </div>
+        <button
+          onClick={selectRandomPair}
+          className="flex justify-center items-center bg-neutral h-12 text-3xl"
+        >
+          <div className="hover:animate-spin w-24 h-5/6">🎲</div>
+        </button>
       </div>
     </div>
   );
