@@ -29,6 +29,7 @@ const PronunciationPage = () => {
   const [audioUrl1, setAudioUrl1] = useState("");
   const [audioUrl2, setAudioUrl2] = useState("");
   const [answer, setAnswer] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const apiUrl = import.meta.env.VITE_BASE_URL;
   //.env file added
@@ -85,12 +86,22 @@ const PronunciationPage = () => {
   }, []);
 
   const selectRandomPair = () => {
-    const randomIndex = Math.floor(Math.random() * wordPairs.length);
-    const selectedPair = wordPairs[randomIndex];
-    setSelectedPair(selectedPair);
-    setAnswer(null);
-    fetchAudioUrl(selectedPair[0], setAudioUrl1);
-    fetchAudioUrl(selectedPair[1], setAudioUrl2);
+    setLoading(true);
+    setTimeout(() => {
+      const randomIndex = Math.floor(Math.random() * wordPairs.length);
+      const selectedPair = wordPairs[randomIndex];
+      setSelectedPair(selectedPair);
+      setAnswer(null);
+      fetchAudioUrl(selectedPair[0], setAudioUrl1);
+      fetchAudioUrl(selectedPair[1], setAudioUrl2);
+      setLoading(false);
+    }, 2000);
+  };
+
+  const rollDice = () => {
+    selectRandomPair();
+    const audio = new Audio("/src/assets/audio/dice_roll_sound.mp3");
+    audio.play();
   };
 
   return (
@@ -166,7 +177,28 @@ const PronunciationPage = () => {
           onClick={selectRandomPair}
           className="flex justify-center items-center bg-neutral h-12 text-3xl"
         >
-          <div className="hover:animate-spin w-24 h-5/6">🎲</div>
+          <div
+            className="flex justify-center items-center h-full w-28"
+            onClick={rollDice}
+          >
+            {loading ? (
+              <div
+                role="img"
+                aria-label="Loading"
+                className=" animate-pulse text-gray-400"
+              >
+                Loading...
+              </div>
+            ) : (
+              <div
+                role="img"
+                aria-label="Roll Dice"
+                className="hover:animate-bounce"
+              >
+                🎲
+              </div>
+            )}
+          </div>
         </button>
       </div>
     </div>
