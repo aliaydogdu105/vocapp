@@ -1,30 +1,8 @@
 import classNames from "classnames";
 import React, { useState, useEffect } from "react";
+import wordPairs from "../helpers/wordPairs";
 
 const PronunciationPage = () => {
-  const [wordPairs, setWordPairs] = useState([
-    ["Coarse", "Course"],
-    ["Course", "Course"],
-    ["Race", "Raise"],
-    ["Race", "Race"],
-    ["Bear", "Bare"],
-    ["Bear", "Bear"],
-    ["Desert", "Dessert"],
-    ["Desert", "Desert"],
-    ["Break", "Brake"],
-    ["Break", "Break"],
-    ["Price", "Prize"],
-    ["Price", "Price"],
-    ["Lose", "to Loose"],
-    ["Loose", "Loose"],
-    ["Plain", "Plane"],
-    ["Plain", "Plain"],
-    ["Wool", "Well"],
-    ["Well", "Well"],
-    ["Wed", "Wood"],
-    ["Wed", "Wed"],
-  ]);
-
   const [selectedPair, setSelectedPair] = useState([]);
   const [audioUrl1, setAudioUrl1] = useState("");
   const [audioUrl2, setAudioUrl2] = useState("");
@@ -110,7 +88,7 @@ const PronunciationPage = () => {
         <div className="flex justify-center items-center flex-col gap-4 px-4 py-8 border-t border-gray-400">
           <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
           <p>Listen to two words and choose the correct answer:</p>
-          {audioUrl1 && audioUrl2 && (
+          {audioUrl1 && audioUrl2 ? (
             <div className=" flex flex-col gap-4">
               <div className=" flex justify-around gap-10">
                 <div
@@ -166,6 +144,10 @@ const PronunciationPage = () => {
                 </div>
               </div>
             </div>
+          ) : (
+            <p className=" italic font-semibold">
+              Roll the dice again, please.
+            </p>
           )}
           {answer && (
             <p className="skeleton bg-success p-3 text-base-100">
@@ -185,7 +167,7 @@ const PronunciationPage = () => {
               <div
                 role="img"
                 aria-label="Loading"
-                className=" animate-pulse text-gray-400"
+                className=" animate-pulse text-gray-400 text-xl"
               >
                 Loading...
               </div>
