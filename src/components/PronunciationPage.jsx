@@ -83,7 +83,7 @@ const PronunciationPage = () => {
   };
 
   return (
-    <div className="h-screen flex justify-center items-center">
+    <div className="h-[calc(100vh-68px)] flex justify-center items-center transition-all">
       <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 2xl:w-1/2">
         <div className="flex justify-center items-center flex-col gap-4 px-4 py-8 border-t border-gray-400">
           <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
@@ -119,7 +119,7 @@ const PronunciationPage = () => {
                   <button
                     onClick={() => handleAnswer("Same")}
                     className={classNames(
-                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center",
+                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                       {
                         "bg-green-500": answer === "Correct1",
                         "bg-red-500": answer === "Wrong1",
@@ -132,7 +132,7 @@ const PronunciationPage = () => {
                   <button
                     onClick={() => handleAnswer("Different")}
                     className={classNames(
-                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center",
+                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                       {
                         "bg-green-500": answer === "Correct2",
                         "bg-red-500": answer === "Wrong2",
