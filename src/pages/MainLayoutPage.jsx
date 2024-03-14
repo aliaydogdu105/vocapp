@@ -2,6 +2,7 @@ import React from "react";
 import ThemeButton from "../components/ThemeButton";
 import { useState, useEffect } from "react";
 import PronunciationPage from "./PronunciationPage";
+import { NavLink, Route, Routes } from "react-router-dom";
 
 const Navbar = () => {
   const [isdark, setIsdark] = useState(
@@ -39,7 +40,7 @@ const Navbar = () => {
               </label>
             </div>
             <div className="flex-1 px-2 mx-2 font-semibold text-2xl">
-              VocApp
+              <NavLink to="/">VocApp</NavLink>
             </div>
             {/* Colors */}
             {/* <button className="btn btn-primary">primary</button>
@@ -52,21 +53,25 @@ const Navbar = () => {
         <button className="btn btn-warning">warning</button>
         <button className="btn btn-error">error</button> */}
             {/* Colors */}
+
             <div className="flex-none hidden lg:block">
+              {/* Navbar menu content here */}
               <ul className="menu menu-horizontal">
-                {/* Navbar menu content here */}
                 <li>
-                  <a>Navbar Item 1</a>
+                  <NavLink to="/pronunciation">Pronunciation</NavLink>
                 </li>
                 <li>
-                  <a>Navbar Item 2</a>
+                  <NavLink to="/meaning">Meaning</NavLink>
                 </li>
               </ul>
             </div>
             <ThemeButton isdark={isdark} setIsdark={setIsdark} />
           </div>
           {/* Page content here */}
-          <PronunciationPage />
+          <Routes>
+            <Route path="/" element={<PronunciationPage />} />
+            <Route path="/pronunciation" element={<PronunciationPage />} />
+          </Routes>
         </div>
         <div className="drawer-side">
           <label
@@ -74,14 +79,13 @@ const Navbar = () => {
             aria-label="close sidebar"
             className="drawer-overlay"
           ></label>
+          {/* Sidebar content here */}
           <ul className="menu p-4 w-80 min-h-full bg-base-200">
-            {/* Sidebar content here */}
-            <ThemeButton isdark={isdark} setIsdark={setIsdark} />
             <li>
-              <a>Sidebar Item 1</a>
+              <NavLink to="/pronunciation">Pronunciation</NavLink>
             </li>
             <li>
-              <a>Sidebar Item 2</a>
+              <NavLink to="/meaning">Meaning</NavLink>
             </li>
           </ul>
         </div>
