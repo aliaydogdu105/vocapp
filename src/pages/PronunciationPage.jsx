@@ -59,10 +59,6 @@ const PronunciationPage = () => {
     }
   };
 
-  useEffect(() => {
-    selectRandomPair();
-  }, []);
-
   const selectRandomPair = () => {
     setLoading(true);
     setTimeout(() => {
