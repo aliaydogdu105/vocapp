@@ -3,6 +3,7 @@ import ThemeButton from "../components/ThemeButton";
 import { useState, useEffect } from "react";
 import PronunciationPage from "./PronunciationPage";
 import { NavLink, Route, Routes } from "react-router-dom";
+import DefinitionsPage from "./DefinitionsPage";
 
 const Navbar = () => {
   const [isdark, setIsdark] = useState(
@@ -61,7 +62,7 @@ const Navbar = () => {
                   <NavLink to="/pronunciation">Pronunciation</NavLink>
                 </li>
                 <li>
-                  <NavLink to="/meaning">Meaning</NavLink>
+                  <NavLink to="/definitions">Definitions</NavLink>
                 </li>
               </ul>
             </div>
@@ -71,6 +72,7 @@ const Navbar = () => {
           <Routes>
             <Route path="/" element={<PronunciationPage />} />
             <Route path="/pronunciation" element={<PronunciationPage />} />
+            <Route path="/definitions" element={<DefinitionsPage />} />
           </Routes>
         </div>
         <div className="drawer-side">
@@ -85,7 +87,7 @@ const Navbar = () => {
               <NavLink to="/pronunciation">Pronunciation</NavLink>
             </li>
             <li>
-              <NavLink to="/meaning">Meaning</NavLink>
+              <NavLink to="/definitions">Definitions</NavLink>
             </li>
           </ul>
         </div>
