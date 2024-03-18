@@ -163,9 +163,9 @@ const PronunciationPage = () => {
               <div
                 role="img"
                 aria-label="Loading"
-                className=" animate-pulse text-gray-400 text-xl"
+                className="flex justify-center items-center text-gray-400 text-xl"
               >
-                Loading...
+                <span className="loading loading-bars loading-md"></span>
               </div>
             ) : (
               <div
