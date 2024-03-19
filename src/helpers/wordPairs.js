@@ -1,4 +1,3 @@
-
 const wordPairs = [
   ["altar", "altar"],
   ["altar", "alter"],
@@ -359,6 +358,15 @@ const wordPairs = [
   ["warn", "warn"],
   ["warn", "worn"],
   ["worn", "worn"],
+  ["well", "well"],
+  ["well", "wool"],
+  ["wool", "woll"],
+  ["game", "game"],
+  ["came", "game"],
+  ["came", "came"],
+  ["cut", "cut"],
+  ["gut", "cut"],
+  ["gut", "gut"],
   ["way", "way"],
   ["way", "weigh"],
   ["weigh", "weigh"],
@@ -375,6 +383,5 @@ const wordPairs = [
   ["whine", "wine"],
   ["wine", "wine"],
 ];
-
 
 export default wordPairs;
