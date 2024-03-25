@@ -382,6 +382,18 @@ const wordPairs = [
   ["whine", "whine"],
   ["whine", "wine"],
   ["wine", "wine"],
+  ["ban", "ban"],
+  ["van", "ban"],
+  ["van", "van"],
+  ["base", "base"],
+  ["base", "vase"],
+  ["vase", "vase"],
+  ["date", "date"],
+  ["date", "rate"],
+  ["rate", "rate"],
+  ["rid", "rid"],
+  ["rid", "did"],
+  ["did", "did"],
 ];
 
 export default wordPairs;
