@@ -117,8 +117,8 @@ const PronunciationPage = () => {
                     className={classNames(
                       "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                       {
-                        "bg-green-500": answer === "Correct1",
-                        "bg-red-500": answer === "Wrong1",
+                        "bg-green-500 text-black": answer === "Correct1",
+                        "bg-red-500 text-black": answer === "Wrong1",
                       }
                     )}
                   >
@@ -130,8 +130,8 @@ const PronunciationPage = () => {
                     className={classNames(
                       "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                       {
-                        "bg-green-500": answer === "Correct2",
-                        "bg-red-500": answer === "Wrong2",
+                        "bg-green-500 text-black": answer === "Correct2",
+                        "bg-red-500 text-black": answer === "Wrong2",
                       }
                     )}
                   >
