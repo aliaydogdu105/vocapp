@@ -1,6 +1,8 @@
 import classNames from "classnames";
 import React, { useState, useEffect } from "react";
 import wordPairs from "../helpers/wordPairs";
+import { useDispatch, useSelector } from "react-redux";
+import { decrement, increment } from "../store/point/scoreSlice";
 
 const PronunciationPage = () => {
   const [selectedPair, setSelectedPair] = useState([]);
@@ -8,6 +10,10 @@ const PronunciationPage = () => {
   const [audioUrl2, setAudioUrl2] = useState("");
   const [answer, setAnswer] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const scoreTrue = useSelector((state) => state.score.trueValue);
+  const scoreFalse = useSelector((state) => state.score.falseValue);
+  const dispatch = useDispatch();
 
   const apiUrl = import.meta.env.VITE_BASE_URL;
   //.env file added
@@ -44,18 +50,22 @@ const PronunciationPage = () => {
   const handleAnswer = (userAnswer) => {
     if (userAnswer === "Same" && selectedPair[0] === selectedPair[1]) {
       setAnswer("Correct1");
+      dispatch(increment());
     } else if (
       userAnswer === "Different" &&
       selectedPair[0] !== selectedPair[1]
     ) {
       setAnswer("Correct2");
+      dispatch(increment());
     } else if (userAnswer === "Same" && selectedPair[0] !== selectedPair[1]) {
       setAnswer("Wrong1");
+      dispatch(decrement());
     } else if (
       userAnswer === "Different" &&
       selectedPair[0] === selectedPair[1]
     ) {
       setAnswer("Wrong2");
+      dispatch(decrement());
     }
   };
 
@@ -81,75 +91,79 @@ const PronunciationPage = () => {
   return (
     <div className="h-[calc(100vh-68px)] flex justify-center items-center transition-all">
       <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 2xl:w-1/2">
-        <div className="flex justify-center items-center flex-col gap-4 px-4 py-8 border-t border-gray-400">
-          <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
-          <p>Listen to two words and choose the correct answer:</p>
-          {audioUrl1 && audioUrl2 ? (
-            <div className=" flex flex-col gap-4">
-              <div className=" flex justify-around gap-10">
-                <div
-                  className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
-                  onClick={() => {
-                    const audio = new Audio(audioUrl1);
-                    audio.play();
-                  }}
-                >
-                  <span role="button" aria-label="Speaker">
-                    🔊
-                  </span>
+        <div className=" flex justify-around items-center border-t border-gray-400">
+          <div>True: {scoreTrue} </div>
+          <div className="flex justify-center items-center flex-col gap-4 px-4 py-8">
+            <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
+            <p>Listen to two words and choose the correct answer:</p>
+            {audioUrl1 && audioUrl2 ? (
+              <div className=" flex flex-col gap-4">
+                <div className=" flex justify-around gap-10">
+                  <div
+                    className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
+                    onClick={() => {
+                      const audio = new Audio(audioUrl1);
+                      audio.play();
+                    }}
+                  >
+                    <span role="button" aria-label="Speaker">
+                      🔊
+                    </span>
+                  </div>
+                  <div
+                    className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
+                    onClick={() => {
+                      const audio = new Audio(audioUrl2);
+                      audio.play();
+                    }}
+                  >
+                    <span role="button" aria-label="Speaker">
+                      🔊
+                    </span>
+                  </div>
                 </div>
-                <div
-                  className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
-                  onClick={() => {
-                    const audio = new Audio(audioUrl2);
-                    audio.play();
-                  }}
-                >
-                  <span role="button" aria-label="Speaker">
-                    🔊
-                  </span>
+                <div className="flex justify-center items-center">
+                  <div className="flex justify-center items-center w-11/12 sm:w-full">
+                    <button
+                      onClick={() => handleAnswer("Same")}
+                      className={classNames(
+                        "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
+                        {
+                          "bg-green-500 text-black": answer === "Correct1",
+                          "bg-red-500 text-black": answer === "Wrong1",
+                        }
+                      )}
+                    >
+                      Same
+                    </button>
+                    <div className="divider divider-horizontal">or</div>
+                    <button
+                      onClick={() => handleAnswer("Different")}
+                      className={classNames(
+                        "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
+                        {
+                          "bg-green-500 text-black": answer === "Correct2",
+                          "bg-red-500 text-black": answer === "Wrong2",
+                        }
+                      )}
+                    >
+                      Different
+                    </button>
+                  </div>
                 </div>
               </div>
-              <div className="flex justify-center items-center">
-                <div className="flex justify-center items-center w-11/12 sm:w-full">
-                  <button
-                    onClick={() => handleAnswer("Same")}
-                    className={classNames(
-                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
-                      {
-                        "bg-green-500 text-black": answer === "Correct1",
-                        "bg-red-500 text-black": answer === "Wrong1",
-                      }
-                    )}
-                  >
-                    Same
-                  </button>
-                  <div className="divider divider-horizontal">or</div>
-                  <button
-                    onClick={() => handleAnswer("Different")}
-                    className={classNames(
-                      "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
-                      {
-                        "bg-green-500 text-black": answer === "Correct2",
-                        "bg-red-500 text-black": answer === "Wrong2",
-                      }
-                    )}
-                  >
-                    Different
-                  </button>
-                </div>
-              </div>
-            </div>
-          ) : (
-            <p className=" italic font-semibold">
-              Roll the dice again, please.
-            </p>
-          )}
-          {answer && (
-            <p className="skeleton bg-success p-3 text-base-100">
-              <b>Words:</b> {selectedPair[0]} - {selectedPair[1]}
-            </p>
-          )}
+            ) : (
+              <p className=" italic font-semibold">
+                Roll the dice again, please.
+              </p>
+            )}
+            {answer && (
+              <p className="skeleton bg-success p-3 text-base-100">
+                <b>Words:</b> {selectedPair[0]} - {selectedPair[1]}
+              </p>
+            )}
+          </div>
+          <div>False: {scoreFalse} </div>
         </div>
         <button
           onClick={selectRandomPair}

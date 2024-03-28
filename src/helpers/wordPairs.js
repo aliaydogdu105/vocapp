@@ -394,6 +394,18 @@ const wordPairs = [
   ["rid", "rid"],
   ["rid", "did"],
   ["did", "did"],
+  ["hear", "hear"],
+  ["hear", "year"],
+  ["year", "year"],
+  ["ham", "ham"],
+  ["yam", "ham"],
+  ["yam", "yam"],
+  ["sin", "sin"],
+  ["sin", "sing"],
+  ["sing", "sing"],
+  ["thin", "thin"],
+  ["thin", "thing"],
+  ["thing", "thing"],
 ];
 
 export default wordPairs;
