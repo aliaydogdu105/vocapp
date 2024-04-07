@@ -89,33 +89,62 @@ const PronunciationPage = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-68px)] flex flex-col sm:flex-row justify-center items-center transition-all">
-      {/* true counter */}
-      <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-3xl">
-          <span style={{ "--value": scoreTrue }}></span>
-        </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          width="30"
-          height="30"
-          viewBox="0 0 48 48"
-        >
-          <path
-            fill="#c8e6c9"
-            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-          ></path>
-          <path
-            fill="#4caf50"
-            d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"
-          ></path>
-        </svg>
+    <div className=" h-screen flex flex-col sm:flex-col-reverse justify-center items-center transition-all">
+      <div className="flex gap-5 mt-[-65px] sm:mt-0">
+        {/* true counter */}
+        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+          <span className="countdown font-mono text-3xl">
+            <span style={{ "--value": scoreTrue }}></span>
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="35"
+            height="30"
+            viewBox="0 0 48 48"
+          >
+            <path
+              fill="#c8e6c9"
+              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
+            ></path>
+            <path
+              fill="#4caf50"
+              d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"
+            ></path>
+          </svg>
+        </div>
+        {/* false counter */}
+        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
+          <span className="countdown font-mono text-3xl">
+            <span style={{ "--value": scoreFalse }}></span>
+          </span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            x="0px"
+            y="0px"
+            width="35"
+            height="30"
+            viewBox="0 0 48 48"
+          >
+            <path
+              fill="#f44336"
+              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
+            ></path>
+            <path
+              fill="#fff"
+              d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"
+            ></path>
+            <path
+              fill="#fff"
+              d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
+            ></path>
+          </svg>
+        </div>
       </div>
       {/* content */}
       <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 2xl:w-1/2">
-        <div className=" flex justify-around items-center border-t border-gray-400">
+        <div className=" flex justify-center items-center border-t border-gray-400">
           <div className="flex justify-center items-center flex-col gap-4 px-4 py-8">
             <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>
             <p>Listen to two words and choose the correct answer:</p>
@@ -152,8 +181,10 @@ const PronunciationPage = () => {
                       className={classNames(
                         "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                         {
-                          "bg-green-500 pointer-events-none text-black": answer === "Correct1",
-                          "bg-red-500 pointer-events-none text-black": answer === "Wrong1",
+                          "bg-green-500 pointer-events-none text-black":
+                            answer === "Correct1",
+                          "bg-red-500 pointer-events-none text-black":
+                            answer === "Wrong1",
                         }
                       )}
                     >
@@ -165,8 +196,10 @@ const PronunciationPage = () => {
                       className={classNames(
                         "grid w-28 h-16 flex-grow card bg-base-200 rounded-box place-items-center outline outline-1 hover:outline-2",
                         {
-                          "bg-green-500 pointer-events-none text-black": answer === "Correct2",
-                          "bg-red-500 pointer-events-none text-black": answer === "Wrong2",
+                          "bg-green-500 pointer-events-none text-black":
+                            answer === "Correct2",
+                          "bg-red-500 pointer-events-none text-black":
+                            answer === "Wrong2",
                         }
                       )}
                     >
@@ -214,33 +247,6 @@ const PronunciationPage = () => {
             )}
           </div>
         </button>
-      </div>
-      {/* false counter */}
-      <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-        <span className="countdown font-mono text-3xl">
-          <span style={{ "--value": scoreFalse }}></span>
-        </span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          x="0px"
-          y="0px"
-          width="35"
-          height="32"
-          viewBox="0 0 48 48"
-        >
-          <path
-            fill="#f44336"
-            d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-          ></path>
-          <path
-            fill="#fff"
-            d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"
-          ></path>
-          <path
-            fill="#fff"
-            d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
-          ></path>
-        </svg>
       </div>
     </div>
   );
