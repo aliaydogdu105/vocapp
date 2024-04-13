@@ -43,18 +43,6 @@ const Navbar = () => {
             <div className="flex-1 px-2 mx-2 font-semibold text-2xl">
               <NavLink to="/">VocApp</NavLink>
             </div>
-            {/* Colors */}
-            {/* <button className="btn btn-primary">primary</button>
-        <button className="btn btn-secondary">secondary</button>
-        <button className="btn btn-accent">accent</button>
-        <button className="btn btn-neutral">neutral</button>
-        <button className="btn btn-base-100">base-100</button>
-        <button className="btn btn-info">info</button>
-        <button className="btn btn-success">success</button>
-        <button className="btn btn-warning">warning</button>
-        <button className="btn btn-error">error</button> */}
-            {/* Colors */}
-
             <div className="flex-none hidden lg:block">
               {/* Navbar menu content here */}
               <ul className="menu menu-horizontal">
@@ -82,7 +70,7 @@ const Navbar = () => {
             className="drawer-overlay"
           ></label>
           {/* Sidebar content here */}
-          <ul className="menu p-4 w-80 min-h-full bg-base-200">
+          <ul className="menu p-4 w-1/2 min-h-full bg-base-200">
             <li>
               <NavLink to="/pronunciation">Pronunciation</NavLink>
             </li>
