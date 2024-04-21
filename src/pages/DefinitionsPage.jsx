@@ -36,7 +36,7 @@ const DefinitionsPage = () => {
   return (
     <div className="h-[calc(100vh-68px)] flex justify-center items-center">
       <div className=" flex flex-col justify-center items-center gap-4 w-11/12">
-        <div className="flex relative">
+        <div className="flex gap-2 relative">
           <input
             type="text"
             placeholder={errorMessage || "Type here"}
@@ -52,7 +52,7 @@ const DefinitionsPage = () => {
             Search
           </button>
           {isSearching && (
-            <div className="absolute inset-0 border-4 border-blue-500 animate-ping rounded-lg"></div>
+            <div className="absolute inset-0 border-2 border-blue-500 animate-ping rounded-lg"></div>
           )}
         </div>
         {data && (
