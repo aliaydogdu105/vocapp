@@ -161,7 +161,7 @@ const WordMatchingPage = () => {
               key={index}
               onClick={() => handleEngWordClick(index)}
               className={classNames(
-                "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl hover:bg-base-300 active:scale-95",
+                "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl active:scale-95",
                 {
                   "border-1 border-blue-500": wordPairs.find(
                     (pair) => pair.english === word
@@ -182,7 +182,7 @@ const WordMatchingPage = () => {
               key={index}
               onClick={() => handleTurWordClick(index)}
               className={classNames(
-                "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl hover:bg-base-300 active:scale-95",
+                "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl active:scale-95",
                 {
                   "border-1 border-blue-500": wordPairs.find(
                     (pair) => pair.turkish === word
