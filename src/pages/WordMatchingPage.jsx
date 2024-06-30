@@ -9,6 +9,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
   {
     id: 4,
@@ -33,6 +36,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
   {
     id: 5,
@@ -41,6 +45,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
   {
     id: 6,
@@ -49,6 +54,7 @@ const words = [
     done: false,
     clickEng: false,
     clickTur: false,
+    matched: false,
   },
 ];
 
@@ -64,6 +70,8 @@ const WordMatchingPage = () => {
   const [wordPairs, setWordPairs] = useState(words);
   const [shuffledEnglishWords, setShuffledEnglishWords] = useState([]);
   const [shuffledTurkishWords, setShuffledTurkishWords] = useState([]);
+  const [selectedEnglish, setSelectedEnglish] = useState(null);
+  const [selectedTurkish, setSelectedTurkish] = useState(null);
 
   useEffect(() => {
     const selectedWordPairs = shuffleArray(wordPairs).slice(0, 3);
@@ -78,21 +86,71 @@ const WordMatchingPage = () => {
   }, []);
 
   const handleEngWordClick = (index) => {
+    const word = shuffledEnglishWords[index];
+    const pairIndex = wordPairs.findIndex((pair) => pair.english === word);
+    const pair = wordPairs[pairIndex];
+
+    // Eğer kelime matched veya clickEng true ise, tıklamaya izin verme
+    if (pair.matched || pair.clickEng) {
+      return;
+    }
+
     const updatedWordPairs = [...wordPairs];
-    updatedWordPairs[index].clickEng = !updatedWordPairs[index].clickEng;
+    updatedWordPairs[pairIndex].clickEng =
+      !updatedWordPairs[pairIndex].clickEng;
+    setSelectedEnglish(pairIndex);
     setWordPairs(updatedWordPairs);
+
+    if (selectedTurkish !== null) {
+      checkMatch(pairIndex, selectedTurkish, updatedWordPairs);
+    }
   };
 
   const handleTurWordClick = (index) => {
+    const word = shuffledTurkishWords[index];
+    const pairIndex = wordPairs.findIndex((pair) => pair.turkish === word);
+    const pair = wordPairs[pairIndex];
+
+    // Eğer kelime matched veya clickTur true ise, tıklamaya izin verme
+    if (pair.matched || pair.clickTur) {
+      return;
+    }
+
     const updatedWordPairs = [...wordPairs];
-    updatedWordPairs[index].clickTur = !updatedWordPairs[index].clickTur;
+    updatedWordPairs[pairIndex].clickTur =
+      !updatedWordPairs[pairIndex].clickTur;
+    setSelectedTurkish(pairIndex);
     setWordPairs(updatedWordPairs);
+
+    if (selectedEnglish !== null) {
+      checkMatch(selectedEnglish, pairIndex, updatedWordPairs);
+    }
   };
 
-  console.log(wordPairs);
+  const checkMatch = (engIndex, turIndex, updatedWordPairs) => {
+    if (
+      updatedWordPairs[engIndex].english ===
+        updatedWordPairs[turIndex].english &&
+      updatedWordPairs[engIndex].turkish === updatedWordPairs[turIndex].turkish
+    ) {
+      updatedWordPairs[engIndex].matched = true;
+      updatedWordPairs[turIndex].matched = true;
+      setSelectedEnglish(null);
+      setSelectedTurkish(null);
+    } else {
+      setTimeout(() => {
+        updatedWordPairs[engIndex].clickEng = false;
+        updatedWordPairs[turIndex].clickTur = false;
+        setSelectedEnglish(null);
+        setSelectedTurkish(null);
+        setWordPairs([...updatedWordPairs]);
+      }, 500);
+    }
+    setWordPairs([...updatedWordPairs]);
+  };
 
   return (
-    <div className="flex flex-col justify-center items-center gap-5 px-4">
+    <div className="flex flex-col justify-center items-center gap-5 px-4 transition">
       <h1 className="text-2xl sm:text-3xl font-bold mt-8">
         Word Matching Game
       </h1>
@@ -105,8 +163,12 @@ const WordMatchingPage = () => {
               className={classNames(
                 "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl hover:bg-base-300 active:scale-95",
                 {
-                  "border-4 border-blue-500":
-                    wordPairs[index].clickEng === true,
+                  "border-1 border-blue-500": wordPairs.find(
+                    (pair) => pair.english === word
+                  )?.clickEng,
+                  "border-none bg-green-500": wordPairs.find(
+                    (pair) => pair.english === word
+                  )?.matched,
                 }
               )}
             >
@@ -122,8 +184,12 @@ const WordMatchingPage = () => {
               className={classNames(
                 "card w-full sm:w-3/4 md:w-1/2 h-32 grid place-content-center bg-base-200 border border-base-300 shadow-xl hover:bg-base-300 active:scale-95",
                 {
-                  "border-4 border-blue-500":
-                    wordPairs[index].clickTur === true,
+                  "border-1 border-blue-500": wordPairs.find(
+                    (pair) => pair.turkish === word
+                  )?.clickTur,
+                  " border-none bg-green-500": wordPairs.find(
+                    (pair) => pair.turkish === word
+                  )?.matched,
                 }
               )}
             >
