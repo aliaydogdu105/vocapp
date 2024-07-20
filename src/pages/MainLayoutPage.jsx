@@ -1,10 +1,10 @@
 import React from "react";
-import ThemeButton from "../components/ThemeButton";
 import { useState, useEffect } from "react";
-import PronunciationPage from "./PronunciationPage";
 import { NavLink, Route, Routes } from "react-router-dom";
+import PronunciationPage from "./PronunciationPage";
 import DefinitionsPage from "./DefinitionsPage";
 import WordMatchingPage from "./WordMatchingPage";
+import ThemeButton from "../components/ThemeButton";
 
 const Navbar = () => {
   const [isdark, setIsdark] = useState(
@@ -80,7 +80,10 @@ const Navbar = () => {
             className="drawer-overlay"
           ></label>
           {/* Sidebar content here */}
-          <ul className="menu p-4 w-3/5 min-h-screen bg-base-200">
+          <ul className="menu p-4 gap-6 justify-center items-center w-3/5 text-xl min-h-screen bg-base-200">
+            <span className=" text-7xl text-gray-700 animate-pulse">
+              &#8891;
+            </span>
             <li>
               <NavLink to="/pronunciation" onClick={handleNavLinkClick}>
                 Pronunciation
@@ -96,6 +99,9 @@ const Navbar = () => {
                 Match Words
               </NavLink>
             </li>
+            <span className=" text-7xl text-gray-700 animate-pulse">
+              &#8892;
+            </span>
           </ul>
         </div>
       </div>

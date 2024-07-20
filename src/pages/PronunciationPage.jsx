@@ -143,7 +143,7 @@ const PronunciationPage = () => {
         </div>
       </div>
       {/* content */}
-      <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 2xl:w-1/2">
+      <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 xl:w-1/2">
         <div className=" flex justify-center items-center border-t border-gray-400">
           <div className="flex justify-center items-center flex-col gap-4 px-4 py-8">
             <h2 className="text-3xl sm:text-4xl font-bold">Pronunciation</h2>

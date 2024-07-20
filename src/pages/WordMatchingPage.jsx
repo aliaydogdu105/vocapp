@@ -151,9 +151,14 @@ const WordMatchingPage = () => {
 
   return (
     <div className="flex flex-col justify-center items-center gap-5 px-4 transition">
-      <h1 className="text-2xl sm:text-3xl font-bold mt-8">
-        Word Matching Game
-      </h1>
+      <div className=" flex justify-center items-center text-2xl">
+        <span>&#8255;</span>
+        <h1 className=" sm:text-3xl font-bold mx-2 my-8">
+          Word Matching Game
+        </h1>
+        <span>&#8256;</span>
+      </div>
+
       <div className="flex gap-4 sm:gap-0">
         <div className="flex justify-center items-center gap-5 flex-wrap">
           {shuffledEnglishWords.map((word, index) => (
