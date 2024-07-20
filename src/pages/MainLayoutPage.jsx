@@ -13,6 +13,11 @@ const Navbar = () => {
   useEffect(() => {
     localStorage.setItem("isdark", JSON.stringify(isdark));
   }, [isdark]);
+
+  const handleNavLinkClick = () => {
+    document.getElementById("my-drawer-3").checked = false;
+  };
+
   return (
     <>
       <div className="drawer">
@@ -75,15 +80,21 @@ const Navbar = () => {
             className="drawer-overlay"
           ></label>
           {/* Sidebar content here */}
-          <ul className="menu p-4 w-1/2 min-h-full bg-base-200">
+          <ul className="menu p-4 w-3/5 min-h-screen bg-base-200">
             <li>
-              <NavLink to="/pronunciation">Pronunciation</NavLink>
+              <NavLink to="/pronunciation" onClick={handleNavLinkClick}>
+                Pronunciation
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/definitions">Definitions</NavLink>
+              <NavLink to="/definitions" onClick={handleNavLinkClick}>
+                Definitions
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/word-matching">Match Words</NavLink>
+              <NavLink to="/word-matching" onClick={handleNavLinkClick}>
+                Match Words
+              </NavLink>
             </li>
           </ul>
         </div>
