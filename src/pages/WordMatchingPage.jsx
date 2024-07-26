@@ -1,62 +1,7 @@
-import classNames from "classnames";
 import React, { useEffect, useState } from "react";
+import classNames from "classnames";
+import matchingWord from "../helpers/matchingWords"
 
-const words = [
-  {
-    id: 1,
-    english: "apple",
-    turkish: "elma",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-  {
-    id: 2,
-    english: "banana",
-    turkish: "muz",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-  {
-    id: 3,
-    english: "cat",
-    turkish: "kedi",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-  {
-    id: 4,
-    english: "dog",
-    turkish: "köpek",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-  {
-    id: 5,
-    english: "car",
-    turkish: "araba",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-  {
-    id: 6,
-    english: "dust",
-    turkish: "toz",
-    done: false,
-    clickEng: false,
-    clickTur: false,
-    matched: false,
-  },
-];
 
 const shuffleArray = (array) => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -67,7 +12,7 @@ const shuffleArray = (array) => {
 };
 
 const WordMatchingPage = () => {
-  const [wordPairs, setWordPairs] = useState(words);
+  const [wordPairs, setWordPairs] = useState(matchingWord);
   const [shuffledEnglishWords, setShuffledEnglishWords] = useState([]);
   const [shuffledTurkishWords, setShuffledTurkishWords] = useState([]);
   const [selectedEnglish, setSelectedEnglish] = useState(null);
