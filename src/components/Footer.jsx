@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="footer bg-neutral text-neutral-content items-center py-4 px-8">
-      <aside className="grid-flow-col items-center">
+    <footer className="flex justify-between items-center  gap-3 bg-neutral text-neutral-content py-4 px-4 md:px-8">
+      <aside className="flex gap-2 items-center">
         <img
           src="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/letter_V_red-512.png"
           alt="logo"
@@ -11,7 +11,7 @@ const Footer = () => {
         />
         <p>Copyright © {new Date().getFullYear()}</p>
       </aside>
-      <nav className="grid-flow-col gap-4 md:place-self-center md:justify-self-end">
+      <nav className="flex gap-4 md:place-self-center md:justify-self-end">
         <a className=" transition filter hover:drop-shadow-[4px_4px_2px_#000]">
           <svg
             xmlns="http://www.w3.org/2000/svg"
