@@ -1,6 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
+import LandingPage from "./LandingPage";
 import PronunciationPage from "./PronunciationPage";
 import DefinitionsPage from "./DefinitionsPage";
 import WordMatchingPage from "./WordMatchingPage";
@@ -67,7 +68,7 @@ const Navbar = () => {
           </div>
           {/* Page content here */}
           <Routes>
-            <Route path="/" element={<PronunciationPage />} />
+            <Route path="/" element={<LandingPage />} />
             <Route path="/pronunciation" element={<PronunciationPage />} />
             <Route path="/definitions" element={<DefinitionsPage />} />
             <Route path="/word-matching" element={<WordMatchingPage />} />
