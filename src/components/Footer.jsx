@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <footer className="flex justify-between items-center  gap-3 bg-neutral text-neutral-content py-4 px-4 md:px-8">
+    <footer className="flex justify-between items-center gap-3 bg-neutral text-neutral-content py-4 px-4 md:px-16">
       <aside className="flex gap-2 items-center">
         <img
           src="https://cdn3.iconfinder.com/data/icons/letters-and-numbers-1/32/letter_V_red-512.png"

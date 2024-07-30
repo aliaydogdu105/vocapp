@@ -89,7 +89,7 @@ const PronunciationPage = () => {
   };
 
   return (
-    <div className=" h-screen flex flex-col sm:flex-col-reverse justify-center items-center transition-all">
+    <div className=" flex flex-col sm:flex-col-reverse justify-center items-center h-full">
       <div className="flex gap-5 mt-[-65px] sm:mt-0">
         {/* true counter */}
         <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">

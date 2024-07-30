@@ -95,7 +95,7 @@ const WordMatchingPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center h-screen gap-5 px-4 transition">
+    <div className="flex flex-col justify-center items-center gap-5 p-4">
       <div className=" flex justify-center items-center text-2xl">
         <span>&#8255;</span>
         <h1 className=" sm:text-3xl font-bold mx-2 my-8">

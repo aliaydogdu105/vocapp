@@ -41,7 +41,7 @@ const DefinitionsPage = () => {
   };
 
   return (
-    <div className=" h-full min-h-screen flex justify-center items-start mt-10">
+    <div className="flex justify-center items-start mt-10">
       <div className="flex flex-col justify-center items-center gap-4 w-11/12">
         <div className="flex gap-2 relative mb-2">
           <input

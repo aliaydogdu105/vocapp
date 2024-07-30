@@ -25,7 +25,7 @@ const Navbar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-base-200 sm:px-8">
+          <div className="w-full navbar bg-base-200 sm:px-16">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -47,7 +47,7 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 px-2 mx-2 font-semibold text-2xl">
+            <div className="flex-1 font-semibold text-2xl">
               <NavLink to="/">VocApp</NavLink>
             </div>
             <div className="flex-none hidden lg:block">
@@ -67,12 +67,14 @@ const Navbar = () => {
             <ThemeButton isdark={isdark} setIsdark={setIsdark} />
           </div>
           {/* Page content here */}
-          <Routes>
-            <Route path="/" element={<LandingPage />} />
-            <Route path="/pronunciation" element={<PronunciationPage />} />
-            <Route path="/definitions" element={<DefinitionsPage />} />
-            <Route path="/word-matching" element={<WordMatchingPage />} />
-          </Routes>
+          <section className="min-h-screen transition-all sm:px-16">
+            <Routes>
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/pronunciation" element={<PronunciationPage />} />
+              <Route path="/definitions" element={<DefinitionsPage />} />
+              <Route path="/word-matching" element={<WordMatchingPage />} />
+            </Routes>
+          </section>
         </div>
         <div className="drawer-side">
           <label
