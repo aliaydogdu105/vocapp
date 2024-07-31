@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useRef } from "react";
+import heroImage from "../assets/image/homePageHero.png";
 
 const LandingPage = () => {
+  const featuresRef = useRef(null);
+
   return (
     <div className="">
       {/* Hero Section */}
-      <section className=" flex flex-col sm:flex-row justify-center items-center text-center gap-12 mx-6 mt-16">
+      <section className=" flex flex-col-reverse sm:flex-row justify-around items-center text-center gap-12 mx-6 mt-16">
         <div className=" flex flex-col justify-center items-center gap-5">
           <h1 className=" text-4xl font-bold">
             Learn English Vocabulary Effortlessly
@@ -12,19 +15,25 @@ const LandingPage = () => {
           <p className="text-lg">
             Master pronunciation, definitions, and more.
           </p>
-          <button className=" bg-primary w-44 text-base-200 px-6 py-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition">
+          <button
+            className=" btn btn-primary w-44 px-6 py-3 rounded-full shadow-lg hover:scale-105 active:scale-95 transition"
+            onClick={() =>
+              window.scrollTo({
+                top: featuresRef.current.offsetTop,
+                behavior: "smooth",
+              })
+            }
+          >
             Get Started
           </button>
         </div>
-        <img
-          src="https://cdn.pixabay.com/photo/2019/01/22/10/58/pixel-cells-3947911_1280.png"
-          alt="Hero"
-          className=" w-1/2 sm:w-1/3"
-        />
+        <img src={heroImage} alt="Hero" className=" w-1/2 sm:w-1/3" />
       </section>
       {/* Features Section */}
-      <section className="py-20 text-center">
-        <h2 className="text-3xl font-bold mb-12">Features</h2>
+      <section ref={featuresRef} className="py-20 text-center">
+        <h2 className="text-3xl font-bold mb-12" id="features">
+          Features
+        </h2>
         <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-2 ">
           <div className=" border border-base flex-1 w-80 py-6 hover:flex-[1.5] hover:shadow-2xl transition-all">
             <div className="text-blue-500 mb-4">

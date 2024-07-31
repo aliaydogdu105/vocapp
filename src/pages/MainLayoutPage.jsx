@@ -50,9 +50,12 @@ const Navbar = () => {
             <div className="flex-1 font-semibold text-2xl">
               <NavLink to="/">VocApp</NavLink>
             </div>
-            <div className="flex-none hidden lg:block">
+            <div className="flex-none hidden pr-5 lg:block">
               {/* Navbar menu content here */}
-              <ul className="menu menu-horizontal">
+              <ul className="menu menu-horizontal gap-3">
+                <li>
+                  <NavLink to="/">Home</NavLink>
+                </li>
                 <li>
                   <NavLink to="/pronunciation">Pronunciation</NavLink>
                 </li>
@@ -87,6 +90,11 @@ const Navbar = () => {
             <span className=" text-7xl text-gray-700 animate-pulse">
               &#8891;
             </span>
+            <li>
+              <NavLink to="/" onClick={handleNavLinkClick}>
+                Home
+              </NavLink>
+            </li>
             <li>
               <NavLink to="/pronunciation" onClick={handleNavLinkClick}>
                 Pronunciation
