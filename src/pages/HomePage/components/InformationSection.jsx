@@ -2,13 +2,13 @@ import React from "react";
 
 const InformationSection = () => {
   return (
-    <div className=" flex flex-col gap-7 p-6 my-10 bg-base-200 bg-opacity-80 relative rounded-r-3xl">
+    <div className=" flex flex-col gap-7 p-6 my-10 bg-base-200 bg-opacity-80 relative rounded-r-3xl border-l-8 border-base-300 border-opacity-50">
       <div className=" bg-[url(https://img.freepik.com/free-vector/white-abstract-background-theme_23-2148830884.jpg?t=st=1723294436~exp=1723298036~hmac=b63604f9dd7855ca1a744f5503ce6ae20c7faa16168529aeaef2083506ce396c&w=996)] w-full h-full absolute top-0 left-0 -z-10 bg-cover bg-no-repeat bg-center rounded-r-3xl">
       </div>
       <h2 className=" text-2xl text-center font-bold">
         How can you enhance your English vocabulary effectively?
       </h2>
-      <p>
+      <p className=" text-justify indent-5">
         Expanding your English vocabulary provides significant advantages in
         both your personal and professional life. Understanding texts in a
         foreign language, communicating accurately, and expressing yourself
