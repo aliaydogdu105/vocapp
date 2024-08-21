@@ -2,7 +2,7 @@ import React from "react";
 
 const FeaturesSection = ({ featuresRef }) => {
   return (
-    <section ref={featuresRef} className="py-10 text-center">
+    <section ref={featuresRef} className="py-10 mb-10 text-center">
       <h2 className="text-3xl font-bold mb-12" id="features">
         Features
       </h2>

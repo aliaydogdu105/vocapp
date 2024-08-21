@@ -16,7 +16,7 @@ const HeroSection = ({ handleScroll }) => {
           Get Started
         </button>
       </div>
-      <img src={heroImage} alt="Hero" className=" w-1/2 sm:w-1/3" />
+      <img src={heroImage} alt="Hero" className=" w-2/3 sm:w-1/3" />
     </section>
   );
 };
