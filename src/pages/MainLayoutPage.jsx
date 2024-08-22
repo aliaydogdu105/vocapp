@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import LandingPage from "./HomePage/LandingPage";
-import PronunciationPage from "./PronunciationPage";
+import PronunciationPage from "../pages/PronunciationPage/PronunciationPage";
 import DefinitionsPage from "./DefinitionsPage";
 import WordMatchingPage from "./WordMatchingPage";
 import ThemeButton from "../components/ThemeButton";

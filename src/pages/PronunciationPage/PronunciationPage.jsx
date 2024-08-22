@@ -1,8 +1,11 @@
 import classNames from "classnames";
 import React, { useState, useEffect } from "react";
-import wordPairs from "../helpers/wordPairs";
+import wordPairs from "../../helpers/wordPairs";
 import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "../store/point/scoreSlice";
+import { decrement, increment } from "../../store/point/scoreSlice";
+import TrueFalseCounter from "./components/TrueFalseCounter";
+import Loading from "./components/Loading";
+import AudioButtons from "./components/AudioButtons";
 
 const PronunciationPage = () => {
   const [selectedPair, setSelectedPair] = useState([]);
@@ -90,58 +93,7 @@ const PronunciationPage = () => {
 
   return (
     <div className=" flex flex-col sm:flex-col-reverse justify-center items-center h-full">
-      <div className="flex gap-5 mt-[-65px] sm:mt-0">
-        {/* true counter */}
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span className="countdown font-mono text-3xl">
-            <span style={{ "--value": scoreTrue }}></span>
-          </span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="35"
-            height="30"
-            viewBox="0 0 48 48"
-          >
-            <path
-              fill="#c8e6c9"
-              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-            ></path>
-            <path
-              fill="#4caf50"
-              d="M34.586,14.586l-13.57,13.586l-5.602-5.586l-2.828,2.828l8.434,8.414l16.395-16.414L34.586,14.586z"
-            ></path>
-          </svg>
-        </div>
-        {/* false counter */}
-        <div className="flex flex-col p-2 bg-neutral rounded-box text-neutral-content">
-          <span className="countdown font-mono text-3xl">
-            <span style={{ "--value": scoreFalse }}></span>
-          </span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            x="0px"
-            y="0px"
-            width="35"
-            height="30"
-            viewBox="0 0 48 48"
-          >
-            <path
-              fill="#f44336"
-              d="M44,24c0,11.045-8.955,20-20,20S4,35.045,4,24S12.955,4,24,4S44,12.955,44,24z"
-            ></path>
-            <path
-              fill="#fff"
-              d="M29.656,15.516l2.828,2.828l-14.14,14.14l-2.828-2.828L29.656,15.516z"
-            ></path>
-            <path
-              fill="#fff"
-              d="M32.484,29.656l-2.828,2.828l-14.14-14.14l2.828-2.828L32.484,29.656z"
-            ></path>
-          </svg>
-        </div>
-      </div>
+      <TrueFalseCounter scoreFalse={scoreFalse} scoreTrue={scoreTrue} />
       {/* content */}
       <div className="mockup-window border border-gray-400 min-w-64 m-6 sm:w-2/3 xl:w-1/2">
         <div className=" flex justify-center items-center border-t border-gray-400">
@@ -150,30 +102,7 @@ const PronunciationPage = () => {
             <p>Listen to two words and choose the correct answer:</p>
             {audioUrl1 && audioUrl2 ? (
               <div className=" flex flex-col gap-4">
-                <div className=" flex justify-around gap-10">
-                  <div
-                    className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
-                    onClick={() => {
-                      const audio = new Audio(audioUrl1);
-                      audio.play();
-                    }}
-                  >
-                    <span role="button" aria-label="Speaker">
-                      🔊
-                    </span>
-                  </div>
-                  <div
-                    className="bg-info flex justify-center items-center cursor-pointer hover:scale-105 rounded-full w-16 h-12"
-                    onClick={() => {
-                      const audio = new Audio(audioUrl2);
-                      audio.play();
-                    }}
-                  >
-                    <span role="button" aria-label="Speaker">
-                      🔊
-                    </span>
-                  </div>
-                </div>
+                <AudioButtons audioUrl1={audioUrl1} audioUrl2={audioUrl2} />
                 <div className="flex justify-center items-center">
                   <div className="flex justify-center items-center w-11/12 sm:w-full">
                     <button
@@ -229,13 +158,7 @@ const PronunciationPage = () => {
             onClick={rollDice}
           >
             {loading ? (
-              <div
-                role="img"
-                aria-label="Loading"
-                className="flex justify-center items-center text-gray-400 text-xl"
-              >
-                <span className="loading loading-bars loading-md"></span>
-              </div>
+              <Loading />
             ) : (
               <div
                 role="img"
