@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import LandingPage from "./HomePage/LandingPage";
 import PronunciationPage from "../pages/PronunciationPage/PronunciationPage";
-import DefinitionsPage from "./DefinitionsPage";
+import DefinitionsPage from "../pages/DefinitionsPage/DefinitionsPage";
 import WordMatchingPage from "./WordMatchingPage";
 import ThemeButton from "../components/ThemeButton";
 

@@ -3,7 +3,7 @@ import heroImage from "../../../assets/image/homePageHero.png";
 
 const HeroSection = ({ handleScroll }) => {
   return (
-    <section className=" flex flex-col-reverse sm:flex-row justify-around items-center text-center gap-12 mx-6 mt-16">
+    <section className=" flex flex-col sm:flex-row justify-around items-center text-center gap-12 mx-6 mt-16">
       <div className=" flex flex-col justify-center items-center gap-5">
         <h1 className=" text-4xl font-bold">
           Learn English Vocabulary Effortlessly
