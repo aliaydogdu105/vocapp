@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
             <div className="flex-none hidden pr-5 lg:block">
               {/* Navbar menu content here */}
-              <ul className="menu menu-horizontal gap-3">
+              <nav className="menu menu-horizontal gap-3">
                 <li>
                   <NavLink to="/">Home</NavLink>
                 </li>
@@ -65,7 +65,7 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/word-matching">Match Words</NavLink>
                 </li>
-              </ul>
+              </nav>
             </div>
             <ThemeButton isdark={isdark} setIsdark={setIsdark} />
           </div>
@@ -86,7 +86,7 @@ const Navbar = () => {
             className="drawer-overlay"
           ></label>
           {/* Sidebar content here */}
-          <ul className="menu p-4 gap-6 justify-center items-center w-3/5 text-xl min-h-screen bg-base-200">
+          <nav className="menu p-4 gap-6 justify-center items-center w-3/5 text-xl min-h-screen bg-base-200">
             <span className=" text-7xl text-gray-700 animate-pulse">
               &#8891;
             </span>
@@ -113,7 +113,7 @@ const Navbar = () => {
             <span className=" text-7xl text-gray-700 animate-pulse">
               &#8892;
             </span>
-          </ul>
+          </nav>
         </div>
       </div>
     </>
