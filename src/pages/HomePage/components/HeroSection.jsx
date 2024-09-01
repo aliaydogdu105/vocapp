@@ -1,5 +1,5 @@
 import React from "react";
-import heroImage from "../../../assets/image/homePageHero.png";
+import heroImage from "../../../assets/image/homePageHero.webp";
 
 const HeroSection = ({ handleScroll }) => {
   return (
