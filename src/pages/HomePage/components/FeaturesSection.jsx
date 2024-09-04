@@ -1,51 +1,72 @@
-import React from "react";
+import React, { useState } from "react";
+import { RiSpeakFill, RiSpeakLine } from "react-icons/ri";
+import { IoBook, IoBookOutline } from "react-icons/io5";
+import { PiNetworkX, PiNetworkXFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const FeaturesSection = ({ featuresRef }) => {
+  const cards = [
+    {
+      id: 1,
+      header: "Pronunciation",
+      text: "Improve your speech",
+      icon: <RiSpeakLine size={50} />,
+      iconHover: <RiSpeakFill size={50} />,
+      route: "/pronunciation",
+    },
+    {
+      id: 2,
+      header: "Definitions",
+      text: "Understand meanings",
+      icon: <IoBookOutline size={50} />,
+      iconHover: <IoBook size={50} />,
+      route: "/definitions",
+    },
+    {
+      id: 3,
+      header: "Word Matching",
+      text: "Enhance vocabulary",
+      icon: <PiNetworkX size={50} />,
+      iconHover: <PiNetworkXFill size={50} />,
+      route: "/word-matching",
+    },
+  ];
+
+  const topPage = () => {
+    window.scrollTo(0, 0);
+  };
+
   return (
     <section ref={featuresRef} className="py-10 mb-10 text-center">
       <h2 className="text-3xl font-bold mb-12" id="features">
         Features
       </h2>
       <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-2 ">
-        <div className=" border border-base flex-1 w-80 py-6 hover:flex-[1.5] hover:shadow-2xl transition-all">
-          <div className="text-blue-500 mb-4">
-            <svg
-              className="h-12 w-12 mx-auto"
-              fill="currentColor"
-              viewBox="0 0 24 24"
+        {cards.map((card) => {
+          const [isHovered, setIsHovered] = useState(false);
+
+          return (
+            <div
+              key={card.id}
+              className="border border-base flex-1 w-80 py-10 hover:flex-[1.15] hover:shadow-2xl transition-all"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
             >
-              <path d="M12 22c5.421 0 10-4.579 10-10S17.421 2 12 2 2 6.579 2 12s4.579 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zm-2 11h4v2h-4v-2zm0-6h4v5h-4V9z" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold mb-2">Pronunciation</h3>
-          <p className="text-gray-600">Improve your speech</p>
-        </div>
-        <div className="border border-base flex-1 w-80 py-6 hover:flex-[1.5] hover:shadow-2xl transition-all">
-          <div className="text-blue-500 mb-4">
-            <svg
-              className="h-12 w-12 mx-auto"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 22c5.421 0 10-4.579 10-10S17.421 2 12 2 2 6.579 2 12s4.579 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zm-2 11h4v2h-4v-2zm0-6h4v5h-4V9z" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold mb-2">Definitions</h3>
-          <p className="text-gray-600">Understand meanings</p>
-        </div>
-        <div className="border border-base flex-1 w-80 py-6 hover:flex-[1.5] hover:shadow-2xl transition-all">
-          <div className="text-blue-500 mb-4">
-            <svg
-              className="h-12 w-12 mx-auto"
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 22c5.421 0 10-4.579 10-10S17.421 2 12 2 2 6.579 2 12s4.579 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8zm-2 11h4v2h-4v-2zm0-6h4v5h-4V9z" />
-            </svg>
-          </div>
-          <h3 className="text-xl font-bold mb-2">Word Matching</h3>
-          <p className="text-gray-600">Enhance vocabulary</p>
-        </div>
+              <div className="flex justify-center">
+                {isHovered ? card.iconHover : card.icon}
+              </div>
+              <h3 className="text-xl font-bold m-4">{card.header}</h3>
+              <p className="text-gray-600">{card.text}</p>
+              <Link
+                to={card.route}
+                className="btn btn-outline w-1/3 active:opacity-90 mt-2"
+                onClick={topPage}
+              >
+                Start
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </section>
   );
