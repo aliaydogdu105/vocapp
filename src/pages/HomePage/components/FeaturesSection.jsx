@@ -3,6 +3,7 @@ import { RiSpeakFill, RiSpeakLine } from "react-icons/ri";
 import { IoBook, IoBookOutline } from "react-icons/io5";
 import { PiNetworkX, PiNetworkXFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
+import BackgroundHeader from "./BackgroundHeader";
 
 const FeaturesSection = ({ featuresRef }) => {
   const cards = [
@@ -55,7 +56,10 @@ const FeaturesSection = ({ featuresRef }) => {
               <div className="flex justify-center">
                 {isHovered ? card.iconHover : card.icon}
               </div>
-              <h3 className="text-xl font-bold m-4">{card.header}</h3>
+              <header className="text-xl font-bold m-4 whitespace-nowrap relative">
+                <BackgroundHeader text={card.header} />
+                <h2>{card.header}</h2>
+              </header>
               <p className="text-gray-600">{card.text}</p>
               <Link
                 to={card.route}

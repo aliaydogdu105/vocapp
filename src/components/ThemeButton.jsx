@@ -1,6 +1,6 @@
 import React from "react";
 
-const ThemeButton = ({ isdark, setIsdark }) => {
+const ThemeButton = ({ isDark, setIsDark }) => {
   return (
     <div>
       <label className="cursor-pointer grid place-items-center">
@@ -8,8 +8,8 @@ const ThemeButton = ({ isdark, setIsdark }) => {
           type="checkbox"
           value="night"
           className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
-          checked={isdark}
-          onChange={() => setIsdark(!isdark)}
+          checked={isDark}
+          onChange={() => setIsDark(!isDark)}
         />
         <svg
           className="col-start-1 row-start-1 stroke-base-100 fill-base-100"

@@ -8,12 +8,12 @@ import WordMatchingPage from "./WordMatchingPage";
 import ThemeButton from "../components/ThemeButton";
 
 const Navbar = () => {
-  const [isdark, setIsdark] = useState(
-    JSON.parse(localStorage.getItem("isdark"))
+  const [isDark, setIsDark] = useState(
+    JSON.parse(localStorage.getItem("isDark"))
   );
   useEffect(() => {
-    localStorage.setItem("isdark", JSON.stringify(isdark));
-  }, [isdark]);
+    localStorage.setItem("isDark", JSON.stringify(isDark));
+  }, [isDark]);
 
   const handleNavLinkClick = () => {
     document.getElementById("my-drawer-3").checked = false;
@@ -67,7 +67,7 @@ const Navbar = () => {
                 </li>
               </nav>
             </div>
-            <ThemeButton isdark={isdark} setIsdark={setIsdark} />
+            <ThemeButton isDark={isDark} setIsDark={setIsDark} />
           </div>
           {/* Page content here */}
           <section className="min-h-screen transition-all sm:px-16">
