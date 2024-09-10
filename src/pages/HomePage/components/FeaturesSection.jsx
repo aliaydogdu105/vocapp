@@ -42,14 +42,14 @@ const FeaturesSection = ({ featuresRef }) => {
       <h2 className="text-3xl font-bold mb-12" id="features">
         Features
       </h2>
-      <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-2 ">
+      <div className="flex flex-col sm:flex-row justify-center items-center w-full gap-2">
         {cards.map((card) => {
           const [isHovered, setIsHovered] = useState(false);
 
           return (
             <div
               key={card.id}
-              className="border border-base flex-1 w-80 py-10 hover:flex-[1.15] hover:shadow-2xl transition-all"
+              className="border border-base flex-1 w-80 py-10 hover:flex-[1.15] hover:shadow-2xl transition-all glass"
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
             >
@@ -60,13 +60,13 @@ const FeaturesSection = ({ featuresRef }) => {
                 <BackgroundHeader text={card.header} />
                 <h2>{card.header}</h2>
               </header>
-              <p className="text-gray-600">{card.text}</p>
+              <p className="italic">{card.text}</p>
               <Link
                 to={card.route}
-                className="btn btn-outline w-1/3 active:opacity-90 mt-2"
                 onClick={topPage}
+                className="btn btn-outline w-1/3 active:opacity-90 mt-2"
               >
-                Start
+                <button>Start</button>
               </Link>
             </div>
           );
