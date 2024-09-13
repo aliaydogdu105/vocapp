@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import "./style/wordMatching.css";
 import classNames from "classnames";
 import matchingWord from "../../helpers/matchingWords";
 
@@ -33,6 +34,9 @@ const WordMatchingPage = () => {
 
   const getRandomShuffleClass = () => {
     const shuffleClasses = ["shuffling1", "shuffling2", "shuffling3"];
+    const audio = new Audio("/src/assets/audio/shuffle_sound.mp3");
+    audio.volume = 0.15;
+    audio.play();
     return shuffleClasses[Math.floor(Math.random() * shuffleClasses.length)];
   };
 
