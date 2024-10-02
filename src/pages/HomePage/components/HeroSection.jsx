@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import heroImage from "../../../assets/image/homePageHero.webp";
 
 const HeroSection = ({ handleScroll }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <section className=" flex flex-col sm:flex-row justify-around items-center text-center gap-12 mx-6 mt-16">
       <div className=" flex flex-col justify-center items-center gap-5">
@@ -16,7 +18,18 @@ const HeroSection = ({ handleScroll }) => {
           Get Started
         </button>
       </div>
-      <img src={heroImage} alt="Hero" className=" w-2/3 sm:w-1/3" />
+      <div className=" w-2/3 sm:w-1/3 relative">
+        {/* Image yüklenirken Loading Placeholder */}
+        {isLoading && <div className=" absolute inset-0 bg-base-200 rounded-full"></div>}
+        <img
+          src={heroImage}
+          alt="Hero Image"
+          className={`transition-opacity duration-300 ${
+            isLoading ? "opacity-0" : "opacity-100"
+          }`}
+          onLoad={() => setIsLoading(false)}
+        />
+      </div>
     </section>
   );
 };
