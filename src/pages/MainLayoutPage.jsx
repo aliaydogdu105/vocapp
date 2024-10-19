@@ -2,10 +2,11 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { NavLink, Route, Routes } from "react-router-dom";
 import LandingPage from "./HomePage/LandingPage";
-import PronunciationPage from "../pages/PronunciationPage/PronunciationPage";
-import DefinitionsPage from "../pages/DefinitionsPage/DefinitionsPage";
-import WordMatchingPage from "../pages/WordMatchingPage/WordMatchingPage";
+import PronunciationPage from "./PronunciationPage";
+import DefinitionsPage from "./DefinitionsPage";
+import WordMatchingPage from "./WordMatchingPage";
 import ThemeButton from "../components/ThemeButton";
+import StoryPage from "./StoryPage";
 
 const Navbar = () => {
   const [isDark, setIsDark] = useState(
@@ -65,6 +66,9 @@ const Navbar = () => {
                 <li>
                   <NavLink to="/word-matching">Match Words</NavLink>
                 </li>
+                <li>
+                  <NavLink to="/stories">Stories</NavLink>
+                </li>
               </nav>
             </div>
             <ThemeButton isDark={isDark} setIsDark={setIsDark} />
@@ -76,6 +80,7 @@ const Navbar = () => {
               <Route path="/pronunciation" element={<PronunciationPage />} />
               <Route path="/definitions" element={<DefinitionsPage />} />
               <Route path="/word-matching" element={<WordMatchingPage />} />
+              <Route path="/stories" element={<StoryPage />} />
             </Routes>
           </section>
         </div>
