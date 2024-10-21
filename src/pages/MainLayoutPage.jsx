@@ -115,6 +115,11 @@ const Navbar = () => {
                 Match Words
               </NavLink>
             </li>
+            <li>
+              <NavLink to="/stories" onClick={handleNavLinkClick}>
+                Stories
+              </NavLink>
+            </li>
             <span className=" text-7xl text-gray-700 animate-pulse">
               &#8892;
             </span>
