@@ -20,7 +20,11 @@ const HeroSection = ({ handleScroll }) => {
       </div>
       <div className=" w-2/3 sm:w-1/3 relative">
         {/* Image yüklenirken Loading Placeholder */}
-        {isLoading && <div className=" absolute inset-0 bg-base-200 rounded-full"></div>}
+        {isLoading && (
+          <div className=" absolute flex justify-center items-center inset-0 bg-base-200 rounded-full">
+            <span className=" loading loading-ring loading-md"></span>
+          </div>
+        )}
         <img
           src={heroImage}
           alt="Hero Image"
