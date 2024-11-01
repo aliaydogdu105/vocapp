@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { RiSpeakFill, RiSpeakLine } from "react-icons/ri";
 import { IoBook, IoBookOutline } from "react-icons/io5";
 import { PiNetworkX, PiNetworkXFill } from "react-icons/pi";
+import { IoReader, IoReaderOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import BackgroundHeader from "./BackgroundHeader";
 
@@ -30,6 +31,14 @@ const FeaturesSection = ({ featuresRef }) => {
       icon: <PiNetworkX size={50} />,
       iconHover: <PiNetworkXFill size={50} />,
       route: "/word-matching",
+    },
+    {
+      id: 4,
+      header: "Story Time",
+      text: "Read or listen stories",
+      icon: <IoReaderOutline size={50} />,
+      iconHover: <IoReader size={50} />,
+      route: "/stories",
     },
   ];
 
