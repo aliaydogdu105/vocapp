@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { FaPause, FaPlay } from "react-icons/fa";
 import axios from "axios";
 
 const StoryPage = () => {
@@ -15,12 +16,14 @@ const StoryPage = () => {
       const response = await axios.get(`${apiStory}`);
       setStory(response.data);
       setError(null);
-      
+
       window.speechSynthesis.cancel(); // Yeni hikaye geldiğinde sesi iptal et
       utteranceRef.current = null; // Yeni hikaye için referansı sıfırla
       setIsPlaying(false);
     } catch (error) {
-      setError("Failed to fetch the story. Refresh the page or try again later.");
+      setError(
+        "Failed to fetch the story. Refresh the page or try again later."
+      );
     } finally {
       setLoading(false);
     }
@@ -71,9 +74,28 @@ const StoryPage = () => {
         ) : (
           story && (
             <div>
-              <h1 className="text-2xl text-center font-bold italic mb-4">
-                {story.title}
-              </h1>
+              <div className=" relative">
+                <h1 className="text-2xl text-center font-bold italic mb-4">
+                  {story.title}
+                </h1>
+                <div className=" absolute right-0 top-0">
+                  {isPlaying ? (
+                    <button
+                      onClick={handlePause}
+                      className="px-3 py-3 bg-yellow-500 text-white rounded-full shadow-md hover:scale-105 active:scale-95 transition duration-200"
+                    >
+                      <FaPause />
+                    </button>
+                  ) : (
+                    <button
+                      onClick={handlePlay}
+                      className="px-3 py-3 bg-green-500 text-white rounded-full shadow-md hover:scale-105 active:scale-95 transition duration-200"
+                    >
+                      <FaPlay />
+                    </button>
+                  )}
+                </div>
+              </div>
               <p className="first-letter:text-6xl first-letter:font-semibold first-letter:text-primary tracking-wide leading-8">
                 {story.story}
               </p>
@@ -97,21 +119,6 @@ const StoryPage = () => {
           >
             Get Another Story
           </button>
-          {isPlaying ? (
-            <button
-              onClick={handlePause}
-              className="px-4 py-2 bg-yellow-500 text-white rounded-lg shadow-md hover:scale-105 active:scale-95 transition duration-200"
-            >
-              Pause
-            </button>
-          ) : (
-            <button
-              onClick={handlePlay}
-              className="px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:scale-105 active:scale-95 transition duration-200"
-            >
-              Play
-            </button>
-          )}
         </>
       )}
     </div>
