@@ -1,32 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
 import { FaPause, FaPlay } from "react-icons/fa";
-import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { clearStory } from "../../store/story/storySlice";
+import { fetchStory } from "../../store/story/storyThunks"; 
 
 const StoryPage = () => {
-  const [story, setStory] = useState(null);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+  const { story, loading, error } = useSelector((state) => state.story);
   const [isPlaying, setIsPlaying] = useState(false);
   const utteranceRef = useRef(null);
   const apiStory = import.meta.env.VITE_STORY_URL;
 
-  const fetchStory = async () => {
-    setLoading(true);
-    try {
-      const response = await axios.get(`${apiStory}`);
-      setStory(response.data);
-      setError(null);
-
-      window.speechSynthesis.cancel(); // Yeni hikaye geldiğinde sesi iptal et
-      utteranceRef.current = null; // Yeni hikaye için referansı sıfırla
-      setIsPlaying(false);
-    } catch (error) {
-      setError(
-        "Failed to fetch the story. Refresh the page or try again later."
-      );
-    } finally {
-      setLoading(false);
-    }
+  const handleFetchStory = () => {
+    dispatch(fetchStory(apiStory));
+    setIsPlaying(false);
+    window.speechSynthesis.cancel();
+    utteranceRef.current = null;
   };
 
   const handlePlay = () => {
@@ -35,14 +24,14 @@ const StoryPage = () => {
         const utterance = new SpeechSynthesisUtterance();
         utterance.text = `${story.title}. ${story.story}. Moral: ${story.moral}. Author: ${story.author}`;
         utterance.lang = "en-US";
-        utterance.rate = 0.7;
+        utterance.rate = 0.9;
         utterance.onend = () => {
           setIsPlaying(false);
         };
         utteranceRef.current = utterance;
         window.speechSynthesis.speak(utteranceRef.current);
       } else if (!isPlaying) {
-        window.speechSynthesis.resume(); // Devam ettir
+        window.speechSynthesis.resume();
       }
       setIsPlaying(true);
     }
@@ -56,12 +45,13 @@ const StoryPage = () => {
   };
 
   useEffect(() => {
-    fetchStory();
+    handleFetchStory();
 
     return () => {
       window.speechSynthesis.cancel();
+      dispatch(clearStory());
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
@@ -78,7 +68,7 @@ const StoryPage = () => {
                 <h1 className="text-2xl text-center font-bold italic mb-4">
                   {story.title}
                 </h1>
-                <div className=" absolute right-0 top-0">
+                <div className=" absolute right-0 top-10">
                   {isPlaying ? (
                     <button
                       onClick={handlePause}
@@ -114,7 +104,7 @@ const StoryPage = () => {
       {!loading && (
         <>
           <button
-            onClick={fetchStory}
+            onClick={handleFetchStory}
             className="my-5 px-4 py-2 bg-primary rounded-lg shadow-md hover:scale-105 active:scale-95 transition duration-200"
           >
             Get Another Story
