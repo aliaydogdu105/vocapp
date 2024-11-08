@@ -4,8 +4,8 @@ import wordPairs from "../../helpers/wordPairs";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../store/point/scoreSlice";
 import TrueFalseCounter from "./components/TrueFalseCounter";
-import Loading from "./components/Loading";
 import AudioButtons from "./components/AudioButtons";
+import Loading from "../../components/Loading";
 
 const PronunciationPage = () => {
   const [selectedPair, setSelectedPair] = useState([]);
