@@ -70,13 +70,13 @@ const StoryPage = () => {
               moral={story.moral}
               author={story.author}
               isPlaying={isPlaying}
-              onPlay={handlePlay}
-              onPause={handlePause}
+              handlePlay={handlePlay}
+              handlePause={handlePause}
             />
           )
         )}
       </div>
-      {!loading && <NewStoryButton onClick={handleFetchStory} />}
+      {!loading && <NewStoryButton handleFetchStory={handleFetchStory} />}
     </div>
   );
 };

@@ -7,8 +7,8 @@ const StoryContent = ({
   moral,
   author,
   isPlaying,
-  onPlay,
-  onPause,
+  handlePlay,
+  handlePause,
 }) => {
   return (
     <>
@@ -17,8 +17,8 @@ const StoryContent = ({
         <div className="absolute right-0 top-10">
           <PlayPauseButton
             isPlaying={isPlaying}
-            onPlay={onPlay}
-            onPause={onPause}
+            handlePlay={handlePlay}
+            handlePause={handlePause}
           />
         </div>
       </div>
