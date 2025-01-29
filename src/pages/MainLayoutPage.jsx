@@ -26,7 +26,7 @@ const Navbar = () => {
         <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content flex flex-col">
           {/* Navbar */}
-          <div className="w-full navbar bg-base-200 sm:px-16">
+          <div className="navbar bg-base-200 sm:px-16">
             <div className="flex-none lg:hidden">
               <label
                 htmlFor="my-drawer-3"
@@ -48,33 +48,36 @@ const Navbar = () => {
                 </svg>
               </label>
             </div>
-            <div className="flex-1 font-semibold text-2xl">
-              <NavLink to="/">VocApp</NavLink>
+            {/* desktop navbar  */}
+            <div className=" flex-1 max-w-7xl mx-auto">
+              <div className="flex-1 font-semibold text-2xl">
+                <NavLink to="/">VocApp</NavLink>
+              </div>
+              <div className="flex-none hidden pr-5 lg:block">
+                {/* Navbar menu content here */}
+                <nav className="menu menu-horizontal gap-3">
+                  <li>
+                    <NavLink to="/">Home</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/pronunciation">Pronunciation</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/definitions">Definitions</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/word-matching">Match Words</NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/stories">Stories</NavLink>
+                  </li>
+                </nav>
+              </div>
+              <ThemeButton isDark={isDark} setIsDark={setIsDark} />
             </div>
-            <div className="flex-none hidden pr-5 lg:block">
-              {/* Navbar menu content here */}
-              <nav className="menu menu-horizontal gap-3">
-                <li>
-                  <NavLink to="/">Home</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/pronunciation">Pronunciation</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/definitions">Definitions</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/word-matching">Match Words</NavLink>
-                </li>
-                <li>
-                  <NavLink to="/stories">Stories</NavLink>
-                </li>
-              </nav>
-            </div>
-            <ThemeButton isDark={isDark} setIsDark={setIsDark} />
           </div>
           {/* Page content here */}
-          <section className="min-h-screen transition-all sm:px-16">
+          <section className="min-h-screen transition-all max-w-7xl mx-auto w-full">
             <Routes>
               <Route path="/" element={<LandingPage />} />
               <Route path="/pronunciation" element={<PronunciationPage />} />
