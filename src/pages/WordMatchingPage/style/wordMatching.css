@@ -66,3 +66,11 @@
 .shuffling3 {
   animation: shuffle3 0.8s ease-in-out forwards;
 }
+
+.card {
+  transition: background-color 0.3s ease;
+}
+
+.wrong-match {
+  background-color: #ff6b6b !important;
+}

@@ -93,6 +93,7 @@ const WordMatchingPage = () => {
       setSelectedEnglish(null);
       setSelectedTurkish(null);
     } else {
+      setWordPairs([...updatedWordPairs]);
       setTimeout(() => {
         updatedWordPairs[engIndex].clickEng = false;
         updatedWordPairs[turIndex].clickTur = false;
@@ -128,6 +129,10 @@ const WordMatchingPage = () => {
                   "border-none bg-green-500 text-black": wordPairs.find(
                     (pair) => pair.english === word
                   )?.matched,
+                  "wrong-match":
+                    wordPairs.find((pair) => pair.english === word)?.clickEng &&
+                    selectedTurkish !== null &&
+                    !wordPairs.find((pair) => pair.english === word)?.matched,
                 }
               )}
             >
@@ -147,9 +152,13 @@ const WordMatchingPage = () => {
                   "border-1 border-blue-500": wordPairs.find(
                     (pair) => pair.turkish === word
                   )?.clickTur,
-                  " border-none bg-green-500 text-black": wordPairs.find(
+                  "border-none bg-green-500 text-black": wordPairs.find(
                     (pair) => pair.turkish === word
                   )?.matched,
+                  "wrong-match":
+                    wordPairs.find((pair) => pair.turkish === word)?.clickTur &&
+                    selectedEnglish !== null &&
+                    !wordPairs.find((pair) => pair.turkish === word)?.matched,
                 }
               )}
             >
