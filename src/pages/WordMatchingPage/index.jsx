@@ -12,7 +12,8 @@ const shuffleArray = (array) => {
 };
 
 const WordMatchingPage = () => {
-  const [wordPairs, setWordPairs] = useState(matchingWord);
+  const [allWordPairs, setAllWordPairs] = useState(matchingWord);
+  const [wordPairs, setWordPairs] = useState([]);
   const [shuffledEnglishWords, setShuffledEnglishWords] = useState([]);
   const [shuffledTurkishWords, setShuffledTurkishWords] = useState([]);
   const [selectedEnglish, setSelectedEnglish] = useState(null);
@@ -21,7 +22,26 @@ const WordMatchingPage = () => {
   const [isShuffling, setIsShuffling] = useState(false);
 
   useEffect(() => {
-    const selectedWordPairs = shuffleArray(wordPairs).slice(0, 3);
+    // Eşleşmemiş kelimeleri filtrele
+    const unmatched = allWordPairs.filter(pair => !pair.matched);
+    let selectedWordPairs;
+    
+    if (unmatched.length < 3) {
+      // Eğer yeterli eşleşmemiş kelime kalmadıysa, tüm kelimeleri sıfırla
+      const resetWords = matchingWord.map(pair => ({
+        ...pair,
+        matched: false,
+        clickEng: false,
+        clickTur: false
+      }));
+      setAllWordPairs(resetWords);
+      selectedWordPairs = shuffleArray(resetWords).slice(0, 3);
+    } else {
+      // Eşleşmemiş kelimelerden rastgele 3 tane seç
+      selectedWordPairs = shuffleArray(unmatched).slice(0, 3);
+    }
+    
+    setWordPairs(selectedWordPairs);
     const shuffledEnglish = shuffleArray(
       selectedWordPairs.map((pair) => pair.english)
     );
@@ -45,14 +65,12 @@ const WordMatchingPage = () => {
     const pairIndex = wordPairs.findIndex((pair) => pair.english === word);
     const pair = wordPairs[pairIndex];
 
-    // Eğer kelime matched veya clickEng true ise, tıklamaya izin verme
     if (pair.matched || pair.clickEng) {
       return;
     }
 
     const updatedWordPairs = [...wordPairs];
-    updatedWordPairs[pairIndex].clickEng =
-      !updatedWordPairs[pairIndex].clickEng;
+    updatedWordPairs[pairIndex].clickEng = !updatedWordPairs[pairIndex].clickEng;
     setSelectedEnglish(pairIndex);
     setWordPairs(updatedWordPairs);
 
@@ -84,12 +102,21 @@ const WordMatchingPage = () => {
 
   const checkMatch = (engIndex, turIndex, updatedWordPairs) => {
     if (
-      updatedWordPairs[engIndex].english ===
-        updatedWordPairs[turIndex].english &&
+      updatedWordPairs[engIndex].english === updatedWordPairs[turIndex].english &&
       updatedWordPairs[engIndex].turkish === updatedWordPairs[turIndex].turkish
     ) {
       updatedWordPairs[engIndex].matched = true;
       updatedWordPairs[turIndex].matched = true;
+      
+      // Ana kelime listesini de güncelle
+      const updatedAllWordPairs = allWordPairs.map(pair => {
+        if (pair.english === updatedWordPairs[engIndex].english) {
+          return { ...pair, matched: true };
+        }
+        return pair;
+      });
+      setAllWordPairs(updatedAllWordPairs);
+      
       setSelectedEnglish(null);
       setSelectedTurkish(null);
     } else {
@@ -100,7 +127,7 @@ const WordMatchingPage = () => {
         setSelectedEnglish(null);
         setSelectedTurkish(null);
         setWordPairs([...updatedWordPairs]);
-      }, 500);
+      }, 400);
     }
     setWordPairs([...updatedWordPairs]);
   };
@@ -136,7 +163,7 @@ const WordMatchingPage = () => {
                 }
               )}
             >
-              <div className="card-body">{word}</div>
+              <div className="card-body select-none">{word}</div>
             </div>
           ))}
         </div>
@@ -162,7 +189,7 @@ const WordMatchingPage = () => {
                 }
               )}
             >
-              <div className="card-body">{word}</div>
+              <div className="card-body select-none">{word}</div>
             </div>
           ))}
         </div>
